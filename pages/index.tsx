@@ -1,9 +1,9 @@
 import { getAllPosts } from '../lib/api'
 import { format } from 'date-fns'
 import Link from 'next/link'
-import Layout from '../components/Layout'
 import { rhythm } from '../utils/typography'
 import { useRouter } from 'next/router'
+import Layout from '../components/Layout'
 
 
 export type PostType = {
