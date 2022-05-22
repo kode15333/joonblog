@@ -1,5 +1,5 @@
 import React from 'react'
-import { getAllPosts, getPostBySlug2 } from '../../lib/api'
+import { getAllPosts, getPostBySlug } from '../../lib/api'
 import markdownToHtml from '../../lib/markdownToHtml'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { ParsedUrlQuery } from 'querystring'
@@ -24,9 +24,10 @@ export const getStaticPaths: GetStaticPaths = () => {
         fallback: false,
     }
 }
+
 export const getStaticProps: GetStaticProps = async (context) => {
     const { slug } = context.params as IParams
-    const post = getPostBySlug2(slug.join('/'), [
+    const post = getPostBySlug(slug.join('/'), [
         'title',
         'description',
         'draft',

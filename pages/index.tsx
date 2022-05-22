@@ -1,9 +1,9 @@
 import { getAllPosts } from '../lib/api'
-import { format } from 'date-fns'
 import Link from 'next/link'
 import { rhythm } from '../utils/typography'
 import { useRouter } from 'next/router'
 import Layout from '../components/Layout'
+import dayjs from 'dayjs'
 
 
 export type PostType = {
@@ -30,6 +30,7 @@ export async function getStaticProps() {
 
 const Home = ({ allPosts }: Props) => {
     const { pathname } = useRouter()
+
     return (
         <Layout pathname={pathname} title='joons blog'>
             {allPosts.length &&
@@ -45,7 +46,7 @@ const Home = ({ allPosts }: Props) => {
                                     <a>{title}</a>
                                 </Link>
                             </h3>
-                            <small>{format(new Date(date), 'yyyy-MM-dd')}</small>
+                            <small>{dayjs(date).format('YYYY-MM-DD')}</small>
                         </header>
                     </article>)
                 })}
