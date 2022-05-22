@@ -4,18 +4,17 @@ import { rhythm } from '../utils/typography'
 import { useRouter } from 'next/router'
 import Layout from '../components/Layout'
 import dayjs from 'dayjs'
+import Seo from '../components/Seo'
 
 
 export type PostType = {
     title: string
     description: string
-    draft?: string
-    category: string
-    tags: string[]
     date: string
     slug: string
     content: string
 }
+
 type Props = {
     allPosts: PostType[]
 }
@@ -33,23 +32,26 @@ const Home = ({ allPosts }: Props) => {
 
     return (
         <Layout pathname={pathname} title='joons blog'>
+            <Seo title="Junho's Blog" description='A Junho blog demonstrating what Junho can do.' />
             {allPosts.length &&
-                allPosts.map(({ title, date, slug}) => {
-                    return (<article key={slug}>
+                allPosts.map(({ title, date, slug, description }) =>
+                    (<article key={slug}>
                         <header>
                             <h3
                                 style={{
                                     marginBottom: rhythm(1 / 4),
                                 }}
                             >
-                                <Link href={`/post/${decodeURIComponent(slug)}`}>
-                                    <a>{title}</a>
+                                <Link href={`/post/${slug}`}>
+                                    {title}
                                 </Link>
                             </h3>
                             <small>{dayjs(date).format('YYYY-MM-DD')}</small>
                         </header>
-                    </article>)
-                })}
+                        <section>
+                            <p>{description}</p>
+                        </section>
+                    </article>))}
         </Layout>
     )
 }

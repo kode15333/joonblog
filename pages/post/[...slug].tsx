@@ -4,8 +4,12 @@ import markdownToHtml from '../../lib/markdownToHtml'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { ParsedUrlQuery } from 'querystring'
 import { PostType } from '../index'
-import { rhythm } from '../../utils/typography'
-import Link from 'next/link'
+import { rhythm, scale } from '../../utils/typography'
+import Seo from '../../components/Seo'
+import Layout from '../../components/Layout'
+import { useRouter } from 'next/router'
+import dayjs from 'dayjs'
+import 'prismjs/themes/prism.css'
 
 
 interface IParams extends ParsedUrlQuery {
@@ -30,10 +34,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
     const post = getPostBySlug(slug.join('/'), [
         'title',
         'description',
-        'draft',
-        'slug',
-        'category',
-        'tags',
+        'date',
         'content',
     ]) as PostType
 
@@ -51,38 +52,42 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
 
 export default function Post({ post }: { post: PostType }) {
-    const { slug, title, date, description, content } = post
+    const {pathname} = useRouter()
+    const { title, date, description, content } = post
     return (
-
-        <div
-            style={{
-                marginLeft: `auto`,
-                marginRight: `auto`,
-                maxWidth: rhythm(24),
-                padding: `${rhythm(1.5)} ${rhythm(3 / 4)}`,
-            }}
-        >
-            <h3
-                style={{
-                    fontFamily: `Montserrat, sans-serif`,
-                    marginTop: 0,
-                }}
-            >
-                <Link
-                    href={`/`}
-                >
-                    {title}
-                </Link>
-            </h3>
-            <section>
-                <p
-                    className="markdown-body"
-                    dangerouslySetInnerHTML={{
-                        __html: content,
+        <Layout pathname={pathname} title='joons blog'>
+            <Seo title={title} description={description}/>
+            <article>
+                <header>
+                    <h1
+                        style={{
+                            marginTop: rhythm(1),
+                            marginBottom: 0,
+                        }}
+                    >
+                        {title}
+                    </h1>
+                    <p
+                        style={{
+                            ...scale(-1 / 5),
+                            display: `block`,
+                            marginBottom: rhythm(1),
+                        }}
+                    >
+                        <>{dayjs(date).format('YYYY-MM-DD')}</>
+                    </p>
+                </header>
+                <section
+                    className="light markdown-body"
+                    dangerouslySetInnerHTML={{ __html: content }} />
+                <hr
+                    style={{
+                        marginBottom: rhythm(1),
                     }}
                 />
-            </section>
-        </div>
+            </article>
+        </Layout>
+
     )
 }
 

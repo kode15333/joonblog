@@ -9,7 +9,7 @@ function getPostSlugs() {
     return glob.sync(`${POSTS_DIRECTORY}/**/*.md`)
 }
 
-export function getPostBySlug(slug, fields = []) {
+export function getPostBySlug(slug: string, fields :  string[]) {
     const realSlug = flow(
         replace(`${POSTS_DIRECTORY}/`, ''),
         replace(/\.md$/, '')
@@ -17,29 +17,12 @@ export function getPostBySlug(slug, fields = []) {
 
     const fileContents = fs.readFileSync(`${POSTS_DIRECTORY}/${realSlug}.md`, 'utf8')
     const { data, content } = matter(fileContents)
-    const metaData = JSON.parse(JSON.stringify(data))
-    const items = {}
+    const {date, description, title} = JSON.parse(JSON.stringify(data))
 
-    fields.forEach((field) => {
-        if (field === 'slug') {
-            items[field] = realSlug
-        }
-        if (field === 'content') {
-            items[field] = content
-        }
-        if (field === 'date' && data[field]) {
-            items[field] = metaData[field]
-        }
-
-        if (typeof data[field] !== 'undefined') {
-            items[field] = metaData[field]
-        }
-    })
-
-    return items
+    return {content, date, description, slug : realSlug, title}
 }
 
-export function getAllPosts(fields = []) {
+export function getAllPosts(fields : string[]) {
     const slugs = getPostSlugs()
     return slugs
         .map((slug) => getPostBySlug(slug, fields))
