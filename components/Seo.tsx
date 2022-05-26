@@ -9,9 +9,13 @@ const Seo = ({ title, description }: Props) => {
     return (
         <Head>
             <title>{title}</title>
-            <meta name='description' content={description}></meta>
-            <meta name='op:title' content={title}></meta>
-            <meta name='op:description' content={description}></meta>
+            <meta name='description' content={description}/>
+            <meta name='op:title' content={title}/>
+            <meta name='op:description' content={description}/>
+            <meta name='op:type' content='website'/>
+            <meta name='twitter:card' content='summary'/>
+            <meta name='twitter:title' content={title}/>
+            <meta name='twitter:description' content={description}/>
         </Head>
     )
 }

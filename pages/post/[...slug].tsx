@@ -10,6 +10,7 @@ import Layout from '../../components/Layout'
 import { useRouter } from 'next/router'
 import dayjs from 'dayjs'
 import 'prismjs/themes/prism.css'
+import { META } from '../../constant'
 
 
 interface IParams extends ParsedUrlQuery {
@@ -17,7 +18,7 @@ interface IParams extends ParsedUrlQuery {
 }
 
 export const getStaticPaths: GetStaticPaths = () => {
-    const posts = getAllPosts(['slug']) as PostType[]
+    const posts = getAllPosts()
 
     return {
         paths: posts.map((p) => ({
@@ -31,12 +32,8 @@ export const getStaticPaths: GetStaticPaths = () => {
 
 export const getStaticProps: GetStaticProps = async (context) => {
     const { slug } = context.params as IParams
-    const post = getPostBySlug(slug.join('/'), [
-        'title',
-        'description',
-        'date',
-        'content',
-    ]) as PostType
+
+    const post = getPostBySlug({slug: slug.join('/')})
 
     const content = await markdownToHtml(post.content || '')
 
@@ -51,11 +48,13 @@ export const getStaticProps: GetStaticProps = async (context) => {
 }
 
 
-export default function Post({ post }: { post: PostType }) {
-    const {pathname} = useRouter()
-    const { title, date, description, content } = post
+export default function Post({ post}: { post: PostType }) {
+    const { pathname } = useRouter()
+
+    const { title, date, description, content, next, previous } = post
+    console.log(next, previous)
     return (
-        <Layout pathname={pathname} title='joons blog'>
+        <Layout pathname={pathname} title={META.title}>
             <Seo title={title} description={description}/>
             <article>
                 <header>
@@ -74,7 +73,7 @@ export default function Post({ post }: { post: PostType }) {
                             marginBottom: rhythm(1),
                         }}
                     >
-                        <>{dayjs(date).format('YYYY-MM-DD')}</>
+                        {dayjs(date).format('YYYY-MM-DD')}
                     </p>
                 </header>
                 <section

@@ -5,6 +5,7 @@ import { useRouter } from 'next/router'
 import Layout from '../components/Layout'
 import dayjs from 'dayjs'
 import Seo from '../components/Seo'
+import { META } from '../constant'
 
 
 export type PostType = {
@@ -13,6 +14,8 @@ export type PostType = {
     date: string
     slug: string
     content: string
+    next: string
+    previous: string
 }
 
 type Props = {
@@ -20,7 +23,7 @@ type Props = {
 }
 
 export async function getStaticProps() {
-    const allPosts = getAllPosts(['title', 'date', 'slug', 'description'])
+    const allPosts = getAllPosts()
 
     return {
         props: { allPosts },
@@ -31,8 +34,8 @@ const Home = ({ allPosts }: Props) => {
     const { pathname } = useRouter()
 
     return (
-        <Layout pathname={pathname} title='joons blog'>
-            <Seo title="Junho's Blog" description='A Junho blog demonstrating what Junho can do.' />
+        <Layout pathname={pathname} title={META.title}>
+            <Seo title={META.title} description={META.description} />
             {allPosts.length &&
                 allPosts.map(({ title, date, slug, description }) =>
                     (<article key={slug}>
