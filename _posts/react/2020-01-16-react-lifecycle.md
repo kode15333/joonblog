@@ -7,7 +7,7 @@ category : "react"
 tags:
   - js
   - react
-date: 2020-01-16
+date: "2020-01-16"
 ---
 ## [클래스 컴포넌트 생명주기](https://ko.reactjs.org/docs/state-and-lifecycle.html)
 

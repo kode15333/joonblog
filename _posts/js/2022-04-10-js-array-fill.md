@@ -5,10 +5,9 @@ draft: false
 template: "post"
 category : "js"
 tags:
-- js
+  - js
 date: 2022-04-10
 ---
-
 ## 글을 작성하게 된 이유
 - fill 함수가 이상하게 동작해서..
 

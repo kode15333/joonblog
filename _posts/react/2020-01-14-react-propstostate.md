@@ -7,7 +7,7 @@ category : "react"
 tags:
   - js
   - react
-date: 2020-01-16
+date: "2020-01-16"
 ---
 ## Q1. update를 구현하는 방법에 대해서
 1. 어떻게 동적으로 컴포넌트를 바꿔줄것인가?

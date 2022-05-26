@@ -7,7 +7,7 @@ category : "react"
 tags:
   - js
   - react
-date: 2020-01-16
+date: "2020-01-16"
 ---
 ## [HOOK](https://ko.reactjs.org/docs/hooks-intro.html)
 

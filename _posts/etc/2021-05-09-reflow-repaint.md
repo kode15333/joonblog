@@ -1,7 +1,7 @@
 ---
 title:  "Reflow or Repaint"
 description: "reflow와 repaint의 차이점에 대해서 알고싶어서"
-date: 2021-05-09
+date: "2021-05-09"
 ---
 ### Reflow or Repaint
 ### 1. 글을 작성하는 이유?
