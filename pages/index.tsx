@@ -14,8 +14,6 @@ export type PostType = {
     date: string
     slug: string
     content: string
-    next: string
-    previous: string
 }
 
 type Props = {
