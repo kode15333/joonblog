@@ -43,7 +43,7 @@ const Home = ({ allPosts }: Props) => {
                                     marginBottom: rhythm(1 / 4),
                                 }}
                             >
-                                <Link href={`/post/${slug}`}>
+                                <Link href={`/${slug}`}>
                                     {title}
                                 </Link>
                             </h3>
