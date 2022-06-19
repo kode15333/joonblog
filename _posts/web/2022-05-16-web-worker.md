@@ -20,7 +20,6 @@ date: 2022-05-16
 
 - Web Worker를 통해 UX를 개선할 수 있었다.
     - Total Bloking Time 10% 감소
-    - 개선하면서, 불필요한 Memory를 제거 (outDate)
 - 데이터량이 증가해도 Bloking 걱정이 없어졌다.
 
 ## 2. WebWorker
