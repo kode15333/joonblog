@@ -1,5 +1,5 @@
 ---
-title:  "How to work Webpackr"
+title:  "How to work Webpack"
 description: "Module bundler, Dependency Resolution, Packing"
 template: "post"
 category : "cs"
