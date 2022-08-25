@@ -8,23 +8,27 @@ tags:
 - browser
 date: 2022-08-25
 ---
-> 브라우저 내에는 여러가지의 Event Loop가 있으며, 각 Event Loop들 끼리 협력한다?
-
 ## 0. 작성하는 이유
 
 - 빠른 서비스를 제공하기 위해 Cache를 잘 이용하자
 - `memory cache` `disk cache` `prefetch cache` 차이점은 무엇일까?
 
+## TL;DR
+- **memory cache** : 현재 메모리(현재 페이지) 데이터
+- **disk cache** : 저장된 데이터(방문한 페이지) 데이터
+- **prefetch cache** : 서브 페이지 데이터를 캐싱 처리
+
+
 ## 1. 컴퓨터가 더 빠르게 계산하려면 → 화면을 더 빠르게 그릴려면?
 
 > 빨리 가져올려면 어떻게 해야할까?  가까워야 한다.
 >
-- 브라우저(프로세스)의 실행주체 CPU → 브라우저가 빠르게 작동할려면 연산을 빠르게 하면 된다.
+- 브라우저(프로세스)의 실행주체 CPU → 브라우저가 빠르게 작동할려면?
 - 연산을 빨리 할려면 CPU와 가까운 곳에서 데이터(HTML, CSS, JS)를 가지고 와야한다.
-- **HTTP Cache 정책(**[Cache에 대한 설명](https://jooonho.com/web/2021-05-16-stale-while-revalidate))에 따라 브라우저는 요청한 자원을 저장(캐싱)한다.
+- **HTTP Cache 정책(**[Cache에 대한 설명](https://jooonho.com/web/2021-05-16-stale-while-revalidate))에 따라 브라우저는 요청한 자원을 저장(캐싱)
 - 네트워크를 통해 요청된 자원보다 **캐싱된 자원을 사용하면** 시간을 줄일 수 있다
 
-![storage.png](/assets/browser-cache/storage.png)
+![storage](/assets/browser-cache/storage.png)
 
 ## 2. 브라우저의 Cache
 
@@ -72,20 +76,20 @@ date: 2022-08-25
     <link rel="preload" href="comic-sans.woff2" as="font" />
     ```
 
-    - 가능한 한 빨리 리소스를 다운로드하고 캐시하도록 브라우저에 지시
-    - 브라우저는 리소스를 다운로드한 후 리소스에 대해 아무 작업도 수행 X
-    - 스크립트가 실행되지 않고 스타일시트가 적용되지 않는다.
-    - 기본 플로우 : `index.html → index.css → comic-sans.woff2`
+  - 가능한 한 빨리 리소스를 다운로드하고 캐시하도록 브라우저에 지시
+  - 브라우저는 리소스를 다운로드한 후 리소스에 대해 아무 작업도 수행 X
+  - 스크립트가 실행되지 않고 스타일시트가 적용되지 않는다.
+  - 기본 플로우 : `index.html → index.css → comic-sans.woff2`
 
-        ```jsx
-        <!-- index.html -->
-        <link rel="stylesheet" href="index.css" />
-        
-        /* index.css */
-        @font-face {
-            src: url('comic-sans.woff2') format('woff2'); // 다운로드 하지않고 캐싱 데이터 사용
-        }
-        ```
+      ```jsx
+      <!-- index.html -->
+      <link rel="stylesheet" href="index.css" />
+      
+      /* index.css */
+      @font-face {
+          src: url('comic-sans.woff2') format('woff2'); // 다운로드 하지않고 캐싱 데이터 사용
+      }
+      ```
 
 
     ### 2. prefetch
@@ -118,39 +122,40 @@ date: 2022-08-25
     
     ### 5. prerender
     
-    - 사용시기: 사용자가 해당 URL에 대한 링크를 무조건 열어본다.. 미리 탭을 만들어 렌더링하자(보이지 않는…)
-    
     ```jsx
     <link rel="prerender" href="https://my-app.com/pricing" />
     ```
     
+    - 브라우저에 URL을 로드하고 보이지 않는 탭에서 렌더링하도록 요청
+    - 사용자가 다음에 특정 페이지를 방문할 것이 확실하고 더 빠르게 렌더링하려는 경우에 유용
+    
     ### 6. modulepreload
     
-    - 사용시기: 모듈 안에 모듈.. 먼저  가져오면 되지 않을까?
+    ```jsx
+    <link rel="modulepreload" href="/static/Header.js" />
+    <link rel="modulepreload" href="/static/Logo.js" />
+    <link rel="modulepreload" href="/static/Image.js" />
+    
+    <link rel="modulepreload" href="/static/Header.js" as="serviceworker"
+    ```
+    
+    - 가능한 한 빨리 JS 모듈 스크립트를 다운로드, 캐시 및 컴파일하도록 브라우저에 지시
     - 기본 플로우 : main.js → header.js → logo.js …
-        
-        ```jsx
-        // /static/main.js
-        import Header from '/static/Header.js';
-        ...
-        
-        // /static/Header.js
-        import Logo from '/static/Logo.js';
-        import Link from '/static/Link.js';
-        ...
-        
-        // /static/Logo.js
-        import Img from '/static/Img.js';
-        ...
-        ```
-        
-        ```jsx
-        <link rel="modulepreload" href="/static/Header.js" />
-        <link rel="modulepreload" href="/static/Logo.js" />
-        <link rel="modulepreload" href="/static/Image.js" />
-        
-        <link rel="modulepreload" href="/static/Header.js" as="serviceworker"
-        ```
+    
+    ```jsx
+    // /static/main.js
+    import Header from '/static/Header.js';
+    ...
+    
+    // /static/Header.js
+    import Logo from '/static/Logo.js';
+    import Link from '/static/Link.js';
+    ...
+    
+    // /static/Logo.js
+    import Img from '/static/Img.js';
+    ...
+    ```
 
 
 ## 4. 참고
