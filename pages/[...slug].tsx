@@ -9,15 +9,12 @@ import Seo from '../components/Seo'
 import Layout from '../components/Layout'
 import { useRouter } from 'next/router'
 import dayjs from 'dayjs'
-import 'prismjs/themes/prism.css'
 import { META } from '../constant'
 import Link from 'next/link'
-
 
 interface IParams extends ParsedUrlQuery {
     slug: string[]
 }
-
 
 export const getStaticPaths: GetStaticPaths = () => {
     const posts = getAllPosts()
@@ -59,7 +56,6 @@ interface PostParams {
     }
 }
 
-
 export default function Post({ post, paging }: PostParams) {
     const { pathname } = useRouter()
 
@@ -89,8 +85,9 @@ export default function Post({ post, paging }: PostParams) {
                     </p>
                 </header>
                 <section
-                    className='light markdown-body'
-                    dangerouslySetInnerHTML={{ __html: content }} />
+                    className="light markdown-body"
+                    dangerouslySetInnerHTML={{ __html: content }}
+                />
                 <hr
                     style={{
                         marginBottom: rhythm(1),
@@ -107,24 +104,22 @@ export default function Post({ post, paging }: PostParams) {
                         }}
                     >
                         <li>
-                            {previous  && (
+                            {previous && (
                                 <Link href={previous.slug}>
                                     <a>← {previous.title}</a>
                                 </Link>
                             )}
                         </li>
                         <li>
-                            {next &&
+                            {next && (
                                 <Link href={next.slug}>
                                     <a>{next.title} →</a>
                                 </Link>
-                            }
+                            )}
                         </li>
                     </ul>
                 </nav>
             </article>
         </Layout>
-
     )
 }
-
