@@ -1,11 +1,8 @@
 import type { AppProps } from 'next/app'
 import '../styles/globals.css'
-import '../styles/github-markdown.css'
-import '../styles/github-markdown-light.css'
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import * as gtag from '../lib/ga'
-
 
 function MyApp({ Component, pageProps }: AppProps) {
     const router = useRouter()

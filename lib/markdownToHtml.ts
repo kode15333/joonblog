@@ -3,7 +3,7 @@ import prism from 'remark-prism'
 import remarkGfm from 'remark-gfm'
 import html from 'remark-html'
 
-export default async function markdownToHtml(markdown: any) {
+export default async function markdownToHtml(markdown: string) {
     const result = await remark()
         .use(prism)
         .use(remarkGfm)
