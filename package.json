@@ -40,5 +40,6 @@
     "typescript": "4.6.3",
     "typography": "^0.16.21",
     "typography-theme-github": "^0.16.19"
-  }
+  },
+  "packageManager": "yarn@3.2.3"
 }
