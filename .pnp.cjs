@@ -52,6 +52,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier", "npm:2.7.1"],\
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:f6523f16416422c48834537c3322cb99306e5b97df1baf3e7fbce4c17c8470531fb3bb4e695bd8e3a9005a6946f2bcde7944ef214f0f4e145561e1f87fce7c9b#npm:18.2.0"],\
+            ["react-is", "npm:18.2.0"],\
             ["remark", "npm:14.0.2"],\
             ["remark-gfm", "npm:3.0.1"],\
             ["remark-html", "npm:15.0.1"],\
@@ -3112,6 +3113,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier", "npm:2.7.1"],\
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:f6523f16416422c48834537c3322cb99306e5b97df1baf3e7fbce4c17c8470531fb3bb4e695bd8e3a9005a6946f2bcde7944ef214f0f4e145561e1f87fce7c9b#npm:18.2.0"],\
+            ["react-is", "npm:18.2.0"],\
             ["remark", "npm:14.0.2"],\
             ["remark-gfm", "npm:3.0.1"],\
             ["remark-html", "npm:15.0.1"],\
@@ -4570,6 +4572,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react-is", "npm:16.13.1"]\
           ],\
           "linkType": "HARD"\
+        }],\
+        ["npm:18.2.0", {\
+          "packageLocation": "./.yarn/cache/react-is-npm-18.2.0-0cc5edb910-e72d0ba81b.zip/node_modules/react-is/",\
+          "packageDependencies": [\
+            ["react-is", "npm:18.2.0"]\
+          ],\
+          "linkType": "HARD"\
         }]\
       ]],\
       ["regenerator-runtime", [\
@@ -5088,7 +5097,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["hoist-non-react-statics", "npm:3.3.2"],\
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:f6523f16416422c48834537c3322cb99306e5b97df1baf3e7fbce4c17c8470531fb3bb4e695bd8e3a9005a6946f2bcde7944ef214f0f4e145561e1f87fce7c9b#npm:18.2.0"],\
-            ["react-is", null],\
+            ["react-is", "npm:18.2.0"],\
             ["shallowequal", "npm:1.1.0"],\
             ["supports-color", "npm:5.5.0"]\
           ],\
