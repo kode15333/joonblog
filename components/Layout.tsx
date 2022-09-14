@@ -1,6 +1,5 @@
 import React, { ReactNode } from 'react'
 
-
 import { rhythm, scale } from '../utils/typography'
 import Link from 'next/link'
 
@@ -21,14 +20,13 @@ const Layout = ({ pathname, title, children }: Props) => {
                     marginTop: 0,
                 }}
             >
-                <Link
-
-                    href={`/`}
-                >
-                    <a style={{
-                        boxShadow: `none`,
-                        color: `inherit`,
-                    }}>
+                <Link href={`/`}>
+                    <a
+                        style={{
+                            boxShadow: `none`,
+                            color: `inherit`,
+                        }}
+                    >
                         {title}
                     </a>
                 </Link>
@@ -42,15 +40,14 @@ const Layout = ({ pathname, title, children }: Props) => {
                     marginTop: 0,
                 }}
             >
-                <Link
-                    href={`/`}
-                >
-                    <a style={{
-                        boxShadow: `none`,
-                        color: `inherit`,
-                    }}>
+                <Link href={`/`}>
+                    <a
+                        style={{
+                            boxShadow: `none`,
+                            color: `inherit`,
+                        }}
+                    >
                         {title}
-
                     </a>
                 </Link>
             </h3>
@@ -70,6 +67,5 @@ const Layout = ({ pathname, title, children }: Props) => {
         </div>
     )
 }
-
 
 export default Layout
