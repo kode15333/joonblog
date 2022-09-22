@@ -92,70 +92,70 @@ date: 2022-08-25
       ```
 
 
-    ### 2. prefetch
-    
-    ```jsx
-    <link rel="prefetch" href="/style.css" as="style" />
-    ```
-    
-    - 백그라운드에서 리소스를 다운로드하고 캐시하도록 브라우저에 요청
-    - 다운로드는 낮은 우선 순위로 발생하므로 더 중요한 리소스를 방해 X
-    - 후속 페이지에서 해당 리소스가 필요하고 미리 캐시하려는 경우에 유용(이커머스 - 서브페이지)
-    
-    ### 3. preconnect
-    
-    ```jsx
-    <link rel="preconnect" href="https://api.my-app.com" />
-    ```
-    
-    - 브라우저에 사전에 도메인에 대한 연결을 수행하도록 요청
-    - 단, 연결을 열고 유지하는 데 비용이 많이 드는 작업(4-6개 이상의 도메인 추천)
-    - 기본플로우: `DNS → TCP handshake → TLS handshake` (이 단계를 미리 하자…)
-    
-    ### 4. DNS-prefetch
-    
-    ```jsx
-    <link rel="dns-prefetch" href="https://api.my-app.com" />
-    ```
-    
-    - 사전에 도메인의 DNS 확인을 수행하도록 브라우저에 요청
-    
-    ### 5. prerender
-    
-    ```jsx
-    <link rel="prerender" href="https://my-app.com/pricing" />
-    ```
-    
-    - 브라우저에 URL을 로드하고 보이지 않는 탭에서 렌더링하도록 요청
-    - 사용자가 다음에 특정 페이지를 방문할 것이 확실하고 더 빠르게 렌더링하려는 경우에 유용
-    
-    ### 6. modulepreload
-    
-    ```jsx
-    <link rel="modulepreload" href="/static/Header.js" />
-    <link rel="modulepreload" href="/static/Logo.js" />
-    <link rel="modulepreload" href="/static/Image.js" />
-    
-    <link rel="modulepreload" href="/static/Header.js" as="serviceworker"
-    ```
-    
-    - 가능한 한 빨리 JS 모듈 스크립트를 다운로드, 캐시 및 컴파일하도록 브라우저에 지시
-    - 기본 플로우 : main.js → header.js → logo.js …
-    
-    ```jsx
-    // /static/main.js
-    import Header from '/static/Header.js';
-    ...
-    
-    // /static/Header.js
-    import Logo from '/static/Logo.js';
-    import Link from '/static/Link.js';
-    ...
-    
-    // /static/Logo.js
-    import Img from '/static/Img.js';
-    ...
-    ```
+  ### 2. prefetch
+  
+  ```jsx
+  <link rel="prefetch" href="/style.css" as="style" />
+  ```
+  
+  - 백그라운드에서 리소스를 다운로드하고 캐시하도록 브라우저에 요청
+  - 다운로드는 낮은 우선 순위로 발생하므로 더 중요한 리소스를 방해 X
+  - 후속 페이지에서 해당 리소스가 필요하고 미리 캐시하려는 경우에 유용(이커머스 - 서브페이지)
+  
+  ### 3. preconnect
+  
+  ```jsx
+  <link rel="preconnect" href="https://api.my-app.com" />
+  ```
+  
+  - 브라우저에 사전에 도메인에 대한 연결을 수행하도록 요청
+  - 단, 연결을 열고 유지하는 데 비용이 많이 드는 작업(4-6개 이상의 도메인 추천)
+  - 기본플로우: `DNS → TCP handshake → TLS handshake` (이 단계를 미리 하자…)
+  
+  ### 4. DNS-prefetch
+  
+  ```jsx
+  <link rel="dns-prefetch" href="https://api.my-app.com" />
+  ```
+  
+  - 사전에 도메인의 DNS 확인을 수행하도록 브라우저에 요청
+  
+  ### 5. prerender
+  
+  ```jsx
+  <link rel="prerender" href="https://my-app.com/pricing" />
+  ```
+  
+  - 브라우저에 URL을 로드하고 보이지 않는 탭에서 렌더링하도록 요청
+  - 사용자가 다음에 특정 페이지를 방문할 것이 확실하고 더 빠르게 렌더링하려는 경우에 유용
+  
+  ### 6. modulepreload
+  
+  ```jsx
+  <link rel="modulepreload" href="/static/Header.js" />
+  <link rel="modulepreload" href="/static/Logo.js" />
+  <link rel="modulepreload" href="/static/Image.js" />
+  
+  <link rel="modulepreload" href="/static/Header.js" as="serviceworker"
+  ```
+  
+  - 가능한 한 빨리 JS 모듈 스크립트를 다운로드, 캐시 및 컴파일하도록 브라우저에 지시
+  - 기본 플로우 : main.js → header.js → logo.js …
+  
+  ```jsx
+  // /static/main.js
+  import Header from '/static/Header.js';
+  ...
+  
+  // /static/Header.js
+  import Logo from '/static/Logo.js';
+  import Link from '/static/Link.js';
+  ...
+  
+  // /static/Logo.js
+  import Img from '/static/Img.js';
+  ...
+  ```
 
 
 ## 4. 참고
