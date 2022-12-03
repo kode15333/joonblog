@@ -225,7 +225,7 @@ date: 2022-12-03
    - Syntax Error와 Aggregte Error는 그대로 에러 노출
      - Syntax Error는 parsing 단계에서 에러가 발생하는거라서 try-catch문을 실행시키지 못한다
 
-       ![js-engine](../../assets/error/js-code)
+       ![js-engine](/assets/error/js-code.png)
 
 
     - Promise 에러는 Promise 의 catch method로 자체적으로 처리하기 때문에, 에러가 발생하지 않는다.
@@ -308,7 +308,7 @@ date: 2022-12-03
     - 렌더단계의 결과물인 Virtual DOM을 이용해 계산된 모든 변경사항 실제 DOM에 적용하는 단계를 말한다.
     ```
 
-  ![js-engine](../../assets/error/life-cycle)
+  ![js-engine](/assets/error/life-cycle.png)
 
 
 ### 4.  Custom ErrorBoundary
