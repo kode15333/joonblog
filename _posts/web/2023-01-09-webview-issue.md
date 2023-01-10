@@ -1,6 +1,6 @@
 ---
 title: "채팅 서비스 Webview 이슈"
-description: "visualViewport, Webview Scroll, IOS input buffer, Webview Force Touch, 웹뷰 IOS 스크롤, IOS input 버퍼" 
+description: "visualViewport, Webview Scroll, IOS input buffer, Webview Force Touch" 
 draft: false 
 template: "post"
 category : "CS"
