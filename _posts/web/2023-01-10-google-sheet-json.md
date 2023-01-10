@@ -14,7 +14,7 @@ date: 2023-01-10
   ```js
   const url = 'https://spreadsheets.google.com/feeds/cells/SPREAD_SHEET_ID/1/public/full?alt=json'
   ```
-- AppScript(구글 sheet 플러그인)는 redirect 발생
+- AppScript(구글 sheet 플러그인)는 redirect 발생 
   ```shell
   curl -s  "https://spreadsheets.google.com/feeds/cells/SPREAD_SHEET_ID/1/public/full?alt=json" > data.json
   ```
@@ -32,6 +32,10 @@ date: 2023-01-10
 
 
 ## 2. 해결책
+- curl `-L`((redirect follow) 플래그를 사용해서, AppScript 사용하자
+    ```shell
+     curl -s -L  "https://spreadsheets.google.com/feeds/cells/SPREAD_SHEET_ID/1/public/full?alt=json" > data.json
+    ```
 - V4 API를 사용하여, JSON 형태로 데이터를 가져오자
   ```js
   const url = 'https://sheets.googleapis.com/v4/spreadsheets/SPREAD_SHEET_ID/values/TAB_NAME?alt=json&key=API_KEY'
@@ -75,3 +79,4 @@ date: 2023-01-10
 ## 출처 및 참고
 - [https://developers.google.com/sheets/api/guides/migration#v3-api](https://developers.google.com/sheets/api/guides/migration#v3-api)
 - [https://stackoverflow.com/questions/68854198/did-google-sheets-stop-allowing-json-access](https://stackoverflow.com/questions/68854198/did-google-sheets-stop-allowing-json-access)
+- [https://reqbin.com/req/c-bvijc9he/curl-follow-redirect](https://reqbin.com/req/c-bvijc9he/curl-follow-redirect)
