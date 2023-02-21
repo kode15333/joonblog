@@ -50,6 +50,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["gray-matter", "npm:4.0.3"],\
             ["lodash", "npm:4.17.21"],\
             ["next", "virtual:f6523f16416422c48834537c3322cb99306e5b97df1baf3e7fbce4c17c8470531fb3bb4e695bd8e3a9005a6946f2bcde7944ef214f0f4e145561e1f87fce7c9b#npm:12.3.0"],\
+            ["next-sitemap", "virtual:f6523f16416422c48834537c3322cb99306e5b97df1baf3e7fbce4c17c8470531fb3bb4e695bd8e3a9005a6946f2bcde7944ef214f0f4e145561e1f87fce7c9b#npm:3.1.52"],\
             ["prettier", "npm:2.7.1"],\
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:f6523f16416422c48834537c3322cb99306e5b97df1baf3e7fbce4c17c8470531fb3bb4e695bd8e3a9005a6946f2bcde7944ef214f0f4e145561e1f87fce7c9b#npm:18.2.0"],\
@@ -291,6 +292,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@babel/helper-string-parser", "npm:7.18.10"],\
             ["@babel/helper-validator-identifier", "npm:7.18.6"],\
             ["to-fast-properties", "npm:2.0.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@corex/deepmerge", [\
+        ["npm:4.0.37", {\
+          "packageLocation": "./.yarn/cache/@corex-deepmerge-npm-4.0.37-de6245d411-f6f5daf297.zip/node_modules/@corex/deepmerge/",\
+          "packageDependencies": [\
+            ["@corex/deepmerge", "npm:4.0.37"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -3183,6 +3193,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["gray-matter", "npm:4.0.3"],\
             ["lodash", "npm:4.17.21"],\
             ["next", "virtual:f6523f16416422c48834537c3322cb99306e5b97df1baf3e7fbce4c17c8470531fb3bb4e695bd8e3a9005a6946f2bcde7944ef214f0f4e145561e1f87fce7c9b#npm:12.3.0"],\
+            ["next-sitemap", "virtual:f6523f16416422c48834537c3322cb99306e5b97df1baf3e7fbce4c17c8470531fb3bb4e695bd8e3a9005a6946f2bcde7944ef214f0f4e145561e1f87fce7c9b#npm:3.1.52"],\
             ["prettier", "npm:2.7.1"],\
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:f6523f16416422c48834537c3322cb99306e5b97df1baf3e7fbce4c17c8470531fb3bb4e695bd8e3a9005a6946f2bcde7944ef214f0f4e145561e1f87fce7c9b#npm:18.2.0"],\
@@ -4149,6 +4160,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["minimist", "npm:1.2.6"]\
           ],\
           "linkType": "HARD"\
+        }],\
+        ["npm:1.2.8", {\
+          "packageLocation": "./.yarn/cache/minimist-npm-1.2.8-d7af7b1dce-75a6d645fb.zip/node_modules/minimist/",\
+          "packageDependencies": [\
+            ["minimist", "npm:1.2.8"]\
+          ],\
+          "linkType": "HARD"\
         }]\
       ]],\
       ["modularscale", [\
@@ -4264,6 +4282,34 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             "react-dom",\
             "react",\
             "sass"\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["next-sitemap", [\
+        ["npm:3.1.52", {\
+          "packageLocation": "./.yarn/cache/next-sitemap-npm-3.1.52-60ab1cb664-e82ae8652f.zip/node_modules/next-sitemap/",\
+          "packageDependencies": [\
+            ["next-sitemap", "npm:3.1.52"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:f6523f16416422c48834537c3322cb99306e5b97df1baf3e7fbce4c17c8470531fb3bb4e695bd8e3a9005a6946f2bcde7944ef214f0f4e145561e1f87fce7c9b#npm:3.1.52", {\
+          "packageLocation": "./.yarn/__virtual__/next-sitemap-virtual-22d093a06f/0/cache/next-sitemap-npm-3.1.52-60ab1cb664-e82ae8652f.zip/node_modules/next-sitemap/",\
+          "packageDependencies": [\
+            ["next-sitemap", "virtual:f6523f16416422c48834537c3322cb99306e5b97df1baf3e7fbce4c17c8470531fb3bb4e695bd8e3a9005a6946f2bcde7944ef214f0f4e145561e1f87fce7c9b#npm:3.1.52"],\
+            ["@corex/deepmerge", "npm:4.0.37"],\
+            ["@next/env", null],\
+            ["@types/next", null],\
+            ["@types/next__env", null],\
+            ["minimist", "npm:1.2.8"],\
+            ["next", "virtual:f6523f16416422c48834537c3322cb99306e5b97df1baf3e7fbce4c17c8470531fb3bb4e695bd8e3a9005a6946f2bcde7944ef214f0f4e145561e1f87fce7c9b#npm:12.3.0"]\
+          ],\
+          "packagePeers": [\
+            "@next/env",\
+            "@types/next",\
+            "@types/next__env",\
+            "next"\
           ],\
           "linkType": "HARD"\
         }]\
