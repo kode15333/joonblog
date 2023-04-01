@@ -25,7 +25,7 @@ date: 2023-03-31
 ### 1. Git Action란?
 
 - Git 이벤트를 Hooking 하여, 정의된 Workflow를 실행시켜준다.([링크](https://docs.github.com/en/actions/using-workflows/triggering-a-workflow))
-- 해당 워크 플로우는 Main 브런치로 Pull_Request 이벤트가 발생하면 Jobs 실행하여 `1`을 보여준다.
+- 해당 워크 플로우는 Main 브런치로 Pull_Request 이벤트가 발생하면 jobs test job이 실행하여 `1`을 보여준다.
 
     ```yaml
     name: A Service CI
@@ -48,7 +48,7 @@ date: 2023-03-31
 
 - **workflow** trigger 환경을 `branch` 뿐만 아니라 `paths` 조건을 추가 할 수 있다.
     - 아래 **workflow**는 `service/**` 변경시에만 작동된다
-    - 하지만 **service**의 **foo** 폴더가 바뀌었는지, **bar** 폴더가 바뀌었는지는 확인하지 못한다.
+    - 하지만 **service**의 **foo**/**bar** 폴더가 바뀌었는지는 확인하지 못한다.
 
         ```yaml
         name: A Service CI
@@ -61,107 +61,106 @@ date: 2023-03-31
         ```
 
 - `dorny/paths-filter@2` action plugin을 사용하자
-    - paths-filter를 사용하면 filter의 output으로 관리 할 수 있다.
+- paths-filter를 사용하면 filter의 output으로 관리 할 수 있다.
 
-        ```yaml
-        ...
+    ```yaml
+    ...
         
-        jobs:
-          path:
-            runs-on: ubuntu-latest
-            steps:
-            - uses: actions/checkout@v3
-            - uses: dorny/paths-filter@v2
-              id: filter
-              with:
-                filters: |
-                  foo:
-                    - service/foo/**
-                  bar:
-                    - service/bar/**
-        		- if: steps.filter.outputs.foo == 'true'
-              run: echo foo
-        
-        		- if: steps.filter.outputs.bar == 'true'
-              run: echo bar
-        ```
-
-    - if step에서 환경변수를 정해주자
-        - set-output을 사용하고 싶었지만, git workflow에서는 권장하지 않는다([링크](https://github.blog/changelog/2022-10-11-github-actions-deprecating-save-state-and-set-output-commands/))
-
-        ```yaml
-        ...
-        
-        env:
-        	SERVICE: ''
-        
-        ...
-        		- if: steps.filter.outputs.foo == 'true'
-              run: echo "SERVICE=foo" >> $GITHUB_ENV
-        
-        		- name: echo service
-        			run: echo ${{ env.SERVICE }}
-        
-        ```
-
-
-    ### 3. 공통 패키지가 변경된다면, 모든 Workflow를 실행 시켜줘야 한다..
-    
-    - `dorny/paths-filter@2` 로는 문제를 해결하지 못한다.
-        
-        ```yaml
-        - path 필터는 결국 하나의 액션에 하나의 워크플로우 실행시켜주는것 (1 -> 1)
-        - 공통 패키지가 변경된다면, 하나의 액션에 여러 워크플로우를 실행시켜줘야한다 (1 -> N)
-        ```
-        
-    
-    ### 4. **Reusing workflows .. workflow를 재사용하자**
-    
-    - `on` 이벤트 trigger `workflow_call` 이용해보자
-    - caller(호출하는 **workflow**)
-        
-        ```yaml
-        jobs:
-          로컬-Repo-Workflow-호출:
-            uses: octo-org/this-repo/.github/workflows/workflow-1.yml@172239021f7ba04fe7327647b213799853a9eb89
-        		with:
-        			foo: 'local-repo'
-          프로젝트-workflows폴더-workflow호출:
-            uses: ./.github/workflows/workflow-2.yml
-        		with:
-        			foo: 'my-repo'
-          다른사람이-정의한-레포-Workflow-호출:
-            uses: octo-org/another-repo/.github/workflows/workflow.yml@v1
-        		with:
-        			foo: 'remote-repo'
-        ```
-        
-    - callee(호출당하는 **workflow === Reusing workflows )**
-        
-        ```yaml
-        name: Reusable workflow example
-        
-        on:
-          workflow_call:
-            inputs:
+    jobs:
+      path:
+        runs-on: ubuntu-latest
+        steps:
+        - uses: actions/checkout@v3
+        - uses: dorny/paths-filter@v2
+          id: filter
+          with:
+            filters: |
               foo:
-                required: true
-                type: string
-        
-        jobs:
-          triage:
-            runs-on: ubuntu-latest
-            steps:
-            - name: echo input foo
-        			run: echo ${{ inputs.foo }}
+                - service/foo/**
+              bar:
+                - service/bar/**
+        - if: steps.filter.outputs.foo == 'true'
+          run: echo foo
+    
+        - if: steps.filter.outputs.bar == 'true'
+          run: echo bar
+    ```
+
+- if step에서 환경변수를 정해주자
+    - set-output을 사용하고 싶었지만, git workflow에서는 권장하지 않는다([링크](https://github.blog/changelog/2022-10-11-github-actions-deprecating-save-state-and-set-output-commands/))
+
+        ```yaml
+        ...
+            
+        env:
+            SERVICE: ''
+            
+        ...
+            - if: steps.filter.outputs.foo == 'true'
+              run: echo "SERVICE=foo" >> $GITHUB_ENV
+            
+            - name: echo service
+              run: echo ${{ env.SERVICE }}
+            
         ```
+
+
+### 3. 공통 패키지가 변경된다면, 모든 Workflow를 실행 시켜줘야 한다..
+    
+- `dorny/paths-filter@2` 로는 문제를 해결하지 못한다. 
+    ```yaml
+    - path 필터는 결국 하나의 액션에 하나의 워크플로우 실행시켜주는것 (1 -> 1)
+    - 공통 패키지가 변경된다면, 하나의 액션에 여러 워크플로우를 실행시켜줘야한다 (1 -> N)
+    ```
         
     
-    ### 5. **Reusing Workflow가 안된다면?**
+### 4. **Reusing workflows .. workflow를 재사용하자**
     
-    1. RepoSettion → Actions → Actions permissions 확인해보자.
-    2. Reusing Workflow는 Job이다!! step에서 호출 할 수 없다.
-    3. Reusing Workflow에 대한 [제한사항](https://docs.github.com/en/actions/using-workflows/reusing-workflows#limitations)을 확인하자.
+- `on` 이벤트 trigger `workflow_call` 이용해보자
+- caller(호출하는 **workflow**)
+    
+    ```yaml
+    jobs:
+      로컬-Repo-Workflow-호출:
+        uses: octo-org/this-repo/.github/workflows/workflow-1.yml@172239021f7ba04fe7327647b213799853a9eb89
+            with:
+                foo: 'local-repo'
+      프로젝트-workflows폴더-workflow호출:
+        uses: ./.github/workflows/workflow-2.yml
+            with:
+                foo: 'my-repo'
+      다른사람이-정의한-레포-Workflow-호출:
+        uses: octo-org/another-repo/.github/workflows/workflow.yml@v1
+            with:
+                foo: 'remote-repo'
+    ```
+    
+- callee(호출당하는 **workflow === Reusing workflows )**
+    
+    ```yaml
+    name: Reusable workflow example
+    
+    on:
+      workflow_call:
+        inputs:
+          foo:
+            required: true
+            type: string
+    
+    jobs:
+      triage:
+        runs-on: ubuntu-latest
+        steps:
+        - name: echo input foo
+                run: echo ${{ inputs.foo }}
+    ```
+        
+    
+### 5. **Reusing Workflow가 안된다면?**
+
+1. RepoSettion → Actions → Actions permissions 확인해보자.
+2. Reusing Workflow는 Job이다!! step에서 호출 할 수 없다.
+3. Reusing Workflow에 대한 [제한사항](https://docs.github.com/en/actions/using-workflows/reusing-workflows#limitations)을 확인하자.
 
 ## 출처 및 참고
 - [https://docs.github.com/en/actions](https://docs.github.com/en/actions)
