@@ -1,7 +1,7 @@
-import { fileURLToPath, pathToFileURL, URL } from 'url'
-import fs from 'fs'
-import path from 'path'
-import moduleExports, { Module } from 'module'
+import { URL, fileURLToPath, pathToFileURL } from 'url';
+import fs from 'fs';
+import path from 'path';
+import moduleExports, { Module } from 'module';
 
 var PathType;
 (function(PathType2) {
