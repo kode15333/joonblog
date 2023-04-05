@@ -28,12 +28,10 @@ const Lasco = ({data}:Props) => {
                 <meta property="og:image"  content={`https://creator-stage.supervirtuals.io/enc/${data}?s=500x500&f=webp&q=40`} />
                 <meta  property="og:title"  content="Lasco"/>
                 <meta property="og:description"    content="The magic word, /gen AI image generation and beyond" />
-                <meta property="og:url"  content="https://lasco.ai" />
                 <meta property="twitter:card"  content="summary_large_image" />
                 <meta property="twitter:title"  content="Lasco" />
                 <meta property="twitter:description"  content="The magic word, /gen AI image generation and beyond" />
                 <meta property="twitter:image"  content={`https://creator-stage.supervirtuals.io/enc/${data}?s=500x500&f=webp&q=40`} />
-
 
             </Head>
             <img src={`https://creator-stage.supervirtuals.io/enc/${data}?s=500x500&f=webp&q=40`} alt="Lasco"/>
