@@ -24,7 +24,6 @@ const Lasco = ({data}:Props) => {
                 <title>Lasco</title>
                 <link rel="icon" type="image/x-icon" href="https://creator-stage.supervirtuals.io/enc/28jrsDr%2BqrJMagCF%2FdHU1w%3D%3D?s=10x10&f=webp&q=40"/>
                 <meta  property="og:title"  content="Lasco"/>
-                <meta  property="og:url" content="https://discord.gg/7GmmqSAXSq" />
                 <meta property="og:description"  content="think better" />
                 <meta property="og:image"  content="https://creator-stage.supervirtuals.io/enc/28jrsDr%2BqrJMagCF%2FdHU1w%3D%3D?s=500x500&f=webp&q=40" />
             </Head>
