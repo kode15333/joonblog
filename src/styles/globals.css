@@ -1,7 +1,7 @@
 @import url("style.css");
 @import url('normalize.css');
 @import url('github-markdown.css');
-@import url('github-markdown-dark.css');
+@import url('github-markdown-light.css');
 @import url('prism.css');
 html,
 body {
