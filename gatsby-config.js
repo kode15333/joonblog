@@ -19,10 +19,10 @@ module.exports = {
     },
     plugins: [
         {
-            resolve: `gatsby-plugin-google-analytics`,
+            resolve: "gatsby-plugin-google-tagmanager",
             options: {
-                trackingId: "G-6XBKRHHK6W",
-                head: true,
+                id: "G-6XBKRHHK6W",
+                defaultDataLayer: { platform: "gatsby" },
             },
         },
         `gatsby-plugin-image`,
