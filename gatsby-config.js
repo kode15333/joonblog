@@ -18,6 +18,13 @@ module.exports = {
         siteUrl: `https://jooonho.dev/`,
     },
     plugins: [
+        {
+            resolve: `gatsby-plugin-google-analytics`,
+            options: {
+                trackingId: "G-6XBKRHHK6W",
+                head: true,
+            },
+        },
         `gatsby-plugin-image`,
         {
             resolve: `gatsby-source-filesystem`,

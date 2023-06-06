@@ -15,6 +15,7 @@
         "@fontsource/montserrat": "^4.5.14",
         "gatsby": "^5.9.1",
         "gatsby-plugin-feed": "^5.9.0",
+        "gatsby-plugin-google-analytics": "^5.10.0",
         "gatsby-plugin-image": "^3.9.0",
         "gatsby-plugin-manifest": "^5.9.0",
         "gatsby-plugin-robots-txt": "^1.8.0",
