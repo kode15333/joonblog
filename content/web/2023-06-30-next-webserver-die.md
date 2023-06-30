@@ -1,6 +1,6 @@
 ---
-title: 'Next WebServer가 죽는 이슈"
-description: "Next 13.4.x 버전에서 WebServer가 죽는 이슈(socket hang up, ETIMEDOUT)"
+title: 'Next WebServer가 죽는 이슈'
+description: 'Next 13.4.x 버전에서 WebServer가 죽는 이슈(socket hang up, ETIMEDOUT)'
 draft: false
 template: 'post'
 category: 'web'
