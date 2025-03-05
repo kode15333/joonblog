@@ -15,7 +15,7 @@ const Seo = ({ description, title, children }) => {
                     }
                 }
             }
-        `
+        `,
     )
 
     const metaDescription = description || site.siteMetadata.description
@@ -35,6 +35,9 @@ const Seo = ({ description, title, children }) => {
             />
             <meta name="twitter:title" content={title} />
             <meta name="twitter:description" content={metaDescription} />
+            <script async
+                    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8161968102453153"
+                    crossOrigin="anonymous"></script>
             {children}
         </>
     )
