@@ -22,7 +22,9 @@ const Layout = ({ location, title, children }) => {
 
     return (
         <div className="global-wrapper" data-is-root-path={isRootPath}>
-            <header className="global-header">{header}</header>
+            <header className="global-header">{header}
+                <meta name="google-adsense-account" content="ca-pub-8161968102453153" />
+            </header>
             <main>{children}</main>
             <footer>© {new Date().getFullYear()}, Customized by Joon</footer>
         </div>
